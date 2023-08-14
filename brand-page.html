@@ -1,0 +1,557 @@
+<style>
+  #categorypage .topbrands,
+  #categorypage.alternate .category-menu-images {
+    background-color: white;
+  }
+
+  .breadcrumb * {
+    color: #ccc !important;
+
+  }
+
+  ._container {
+    left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: right;
+    flex-wrap: wrap;
+    margin-top: 0px;
+  }
+
+  .header {
+    background-color: var(--color-1);
+    padding: 6px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header .logo,
+  .header .nav {
+    padding: 0 5px;
+    position: relative;
+    top: 20px;
+  }
+
+  .header .logo a {
+    font-size: 30px;
+    color: #ffffff;
+    text-transform: capitalize;
+  }
+
+  .header .nav ul li {
+    display: inline-block;
+    margin-left: 30px;
+  }
+
+  .header .nav ul li a {
+    display: block;
+    font-size: 16px;
+    padding: 0px 0;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: capitalize;
+    transition: all 0.5s ease;
+    text-align: left;
+    text-decoration: none !important;
+  }
+
+  .header .nav ul li a:hover,
+  .header .nav ul li a.active {
+    color: red;
+    text-decoration: none;
+  }
+
+  .header #nav-check {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav-toggler {
+    height: 34px;
+    width: 34px;
+    background-color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-toggler span {
+    display: block;
+    height: 2px;
+    width: 20px;
+    background-color: #2b2b2b;
+    position: relative;
+    width: 50%;
+  }
+
+  .nav-toggler span::before,
+  .nav-toggler span::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #2b2b2b;
+    left: 0;
+  }
+
+  .nav-toggler span::before {
+    top: -6px;
+  }
+
+  .nav-toggler span::after {
+    top: 6px;
+  }
+
+  .video-container {
+    height: 500px;
+    width: 100%;
+    position: relative;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .video-container .caption {
+    z-index: 1;
+    position: absolute;
+    bottom: 60px;
+    left: 30px;
+    text-align: left;
+    color: #dc0000;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  @media (max-width: 991px) {
+    .nav-toggler {
+      display: flex;
+    }
+
+    .header .nav {
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 50%;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .header .nav ul li {
+      display: block;
+      padding: 10px 10px;
+      background-color: #2b2b2b;
+      width: 100%;
+      position: right;
+    }
+
+    .header #nav-check:checked~.nav {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .header #nav-check:focus~.nav-toggler {
+      box-shadow: 0 0 15px #000000;
+    }
+
+    .header #nav-check:checked~.nav-toggler span {
+      background-color: transparent;
+    }
+
+    .header #nav-check:checked~.nav-toggler span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .header #nav-check:checked~.nav-toggler span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+  }
+
+  .column4 {
+    position: relative;
+    display: inline-block;
+    width: 400px;
+    max-width: 100%;
+  }
+
+  .column4 img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .overlay {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .column4:hover .overlay {
+    opacity: 0.6;
+    background: #000;
+  }
+
+  .first-txt {
+    position: absolute;
+    bottom: 15px;
+    left: 5px;
+    color: white;
+    text-align: left;
+  }
+
+  h3 {
+    font-size: 1em;
+    margin: 0 0 0.625rem;
+    font-weight: bold;
+    line-height: 0.40rem;
+    color: white !important;
+  }
+
+  .first-txt p {
+    margin: 0;
+    line-height: 0.40rem;
+  }
+
+  .first-txt a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .first-txt a:hover {
+    text-decoration: underline;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  @media (max-width: 767px) {
+    .row {
+      text-align: center;
+    }
+  }
+
+  ._memo2 {
+    text-align: center !important;
+    margin-top: 10px;
+  }
+
+  .column4 {
+    padding-right: 2px !important;
+    padding-bottom: 2px !important;
+  }
+
+  .col4 {
+    padding-right: 2px !important;
+  }
+
+  .row::after {
+    content: "";
+    clear: both;
+    display: flex;
+  }
+
+  @media screen and (max-width: 600px) {
+    .row {
+      flex-direction: column;
+    }
+
+    .column4 {
+      width: 100% !important;
+      margin-right: 0;
+      margin-bottom: 0px !important;
+      padding: 0 !important;
+    }
+
+    .column4 img {
+      max-width: 100%;
+      height: auto;
+      padding-bottom: 10px !important;
+    }
+  }
+
+  .video-container {
+    height: 500px;
+    width: 100%;
+    position: relative;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .video-container .caption {
+    z-index: 1;
+    position: absolute;
+    bottom: 60px;
+    left: 30px;
+    text-align: left;
+    color: #dc0000;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+</style>
+<div class="video-container">
+  <a href="/rc-car-trucks-kits/c44?fb=1841&lg=fb">
+    <video autoplay="" loop="" muted="">
+      <source src="https://images.amain.com/images/content-pages/udirc/udi-monster-truck.mp4" type="video/mp4">
+      </source>
+    </video>
+  </a>
+  <div class="caption">
+    Fuel Your Passion for Speed
+    Unleash a UDI R/C and Experience Unforgettable RC Thrills!
+  </div>
+</div>
+<nav class="nav">
+  <ul>
+    <li>
+      <a href="/monster-trucks-electric-kits-cars/c7642?fb=1841&lg=fb">Monster Truck</a>
+    </li>
+    <li>
+      <a href="/search?s=udi+pro&fk=26_453&lg=fk26">Brushless Car&amp; Truck</a>
+    </li>
+    <li>
+      <a href="/udi-r-c-mini-micro-electric-kits-cars-trucks/c7636?fb=1841&o=LowestPrice">Brushed Car &amp; Truck</a>
+    </li>
+    <li>
+      <a href="/rc-boat-kits/c956?fb=1841&lg=fb">Boat</a>
+    </li>
+    <li>
+      <a href="/udi-replacement-parts-cars-trucks/c26471">RC Parts</a>
+    </li>
+  </ul>
+</nav>
+<!-- E/O UPPER CONTENT-->
+<!-- BEGIN MIDDLE CONTENT -->
+<div class="row">
+  <div class="column4">
+    <a href="/udi-rc-amphicyon-1-16-4wd-rtr-rc-car-w-drift-tires-udi1607/p1422393"><img
+        alt="UDI RC Amphicyon 4WD Brushed Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-amphicyon-4wd-drift-car-udi1607.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 AMPHICYON</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a
+      href="/udi-rc-amphicyon-pro-brushless-1-16-4wd-rtr-on-road-rc-car-w-drift-tires-udi1607pro/p1422394"><img
+        alt="UDI RC Amphicyon 4WD Pro Brushless Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-amphicyon-4wd-drift-car-udi1607pro.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 AMPHICYON PRO</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a href="/udi-rc-breaker-1-16-4wd-rtr-onroad-rc-truck-w-drift-tires-udi1601/p1330445"><img
+        alt="UDI RC Breaker 4WD Brushed Mini Drift Truck"
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-breaker-4wd-drift-car-udi1601.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 BREAKER</h3>
+        <p>4WD Brushless Mini Drift Truck</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a
+      href="/udi-rc-breaker-pro-brushless-1-16-4wd-rtr-onroad-rc-truck-w-drift-tires-udi1601pro/p1366528"><img
+        alt="UDI RC Breaker 4WD Pro Brushless Mini Drift Truck"
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-breaker-4wd-drift-car-udi1601pro.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 BREAKER PRO</h3>
+        <p>4WD Brushless Mini Drift Truck</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a href="/udi-rc-coleoptera-1-16-4wd-rtr-onroad-rc-car-w-drift-tires-udi1608/p1451121"><img
+        alt="UDI RC Coleoptera 4WD Brushed Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-coleoptera-4wd-drift-car-udi1608.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 COLEOPTERA</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a
+      href="/udi-rc-coleoptera-pro-1-16-4wd-rtr-brushless-onroad-rc-car-w-drift-tires-udi1608pro/p1451122"><img
+        alt="UDI RC Coleoptera 4WD Pro Brushless Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-coleoptera-4wd-drift-car-udi1608pro.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 COLEOPTERA PRO</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a href="/udi-rc-hatchback-rally-1-16-4wd-rtr-on-road-rc-car-w-drift-tires-udi1604/p1381829"><img
+        alt="UDI RC Hatchback 4WD Brushed Rally Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-hatchback-4wd-drift-car-udi1604.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 HATCHBACK RALLY</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a
+      href="/udi-rc-hatchback-rally-pro-1-16-4wd-rtr-brushless-on-road-rc-car-w-drift-tires-udi1604pro/p1381830"><img
+        alt="UDI RC Hatchback Rally 4WD Pro Brushless Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-hatchback-rally-4wd-drift-car-udi1604pro.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 HATCHBACK RALLY PRO</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a href="/udi-rc-lancia-rally-1-16-4wd-rtr-onroad-rc-car-w-drift-tires-udi1603/p1381827"><img
+        alt="UDI RC Lancia Rally 4WD Brushed Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-lancia-4wd-drift-car-udi1603.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 LANCIA RALLY</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a
+      href="/udi-rc-lancia-rally-pro-1-16-4wd-rtr-brushless-onroad-rc-car-w-drift-tire-udi1603pro/p1381828"><img
+        alt="UDI RC Lancia Rally 4WD Pro Brushless Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-lancia-rally-4wd-drift-car-udi1603pro.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 LANCIA RALLY PRO</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a href="/udi-rc-panther-1-16-4wd-rtr-onroad-rc-car-w-drift-tires-udi1602/p1330438"><img
+        alt="UDI RC Panther 4WD Brushed Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-panther-4wd-drift-car.jpg" width="400px" />
+      <div class="first-txt">
+        <h3>1:16 PANTHER</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a
+      href="/udi-rc-panther-pro-brushless-1-16-4wd-rtr-onroad-rc-car-w-drift-tires-udi1602pro/p1366529"><img
+        alt="UDI RC Panther 4WD Pro Brushless Mini Drift Car "
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-panther-4wd-drift-car-udi1602pro.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:16 PANTHER PRO</h3>
+        <p>4WD Brushless Mini Drift Car</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4"><a href="/udi-rc-daphoenodon-1-12-4wd-rtr-monster-stunt-truck-blue-udi1201b/p1451125"><img
+        alt="UDI RC Daphoenodon Stunt Monster Truck Blue"
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-daphoenodon-4wd-monster-truck-udi1201.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:12 DAPHOENODON</h3>
+        <p>Blue Stunt Monster Truck</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4"><a href="/udi-rc-daphoenodon-1-12-4wd-rtr-monster-stunt-truck-red-udi1201a/p1451126"><img
+        alt="UDI RC Daphoenodon Stunt Monster Truck Red"
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-daphoenodon-4wd-monster-truck-udi1201-red.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:12 DAPHOENODON</h3>
+        <p>Red Stunt Monster Truck</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a href="/udi-rc-teleoceras-1-12-4wd-rtr-monster-stunt-truck-blue-udi1202b/p1451124"><img
+        alt="UDI RC Teleoceras Stunt Monster Truck Red"
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-teleoceras-4wd-drift-car-udi1202-blue.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:12 TELEOCERAS</h3>
+        <p>Red Stunt Monster Truck</p>
+      </div>
+    </a>
+  </div>
+  <div class="column4">
+    <a href="/udi-rc-teleoceras-1-12-4wd-rtr-monster-stunt-truck-red-udi1202a/p1451123"><img
+        alt="UDI RC Teleoceras Stunt Monster Truck Blue"
+        src="https://images.amain.com/images/content-pages/udirc/udi-rc-teleoceras-4wd-drift-car-udi1202-red.jpg"
+        width="400px" />
+      <div class="first-txt">
+        <h3>1:12 TELEOCERAS</h3>
+        <p>Blue Stunt Monster Truck</p>
+      </div>
+    </a>
+  </div>
+</div>
+<!-- E/O MIDDLE CONTENT -->
+<!-- BEGIN LOWER CONTENT -->
+<div class="container">
+  <h2>Recent articles &amp; videos</h2>
+    <div class="_triple-column">
+      <div class="_column"><a href="#"><img alt=""
+            src="https://images.amain.com/images/content-pages/rc-parts-upgrades/best-rc-parts-and-upgrades.jpg"
+            width="550px" /></a>
+        <p class="_memo">What are the Best RC Parts &amp; Upgrades?</p>
+      </div>
+      <div class="_column"><a href="#"> <img alt=""
+            src="https://images.amain.com/images/content-pages/rc-tips/rc-tips-and-tricks.jpg" width=550px" /></a>
+        <p class="_memo">How to RC Tips &amp; Tricks for Radio Control</p>
+      </div>
+      <div class="_column"><a href="#"> <img alt="/mini-rc-offroad-adventure/cp1386"
+            src="https://images.amain.com/images/content-pages/udirc/mini-rc-adventure-bedtime.jpg" width="550px" /></a>
+        <p class="_memo">Mini RC Off-Road Adventure - A Short Story</p>
+      </div>
+</div>
+<div class="video-container">
+  <a href="/rc-boat-kits/c956?fb=1841&lg=fb">
+    <video autoplay="" loop="" muted="">
+      <source src="https://images.amain.com/images/content-pages/udirc/UDI02202.mp4" type="video/mp4">
+      </source>
+    </video>
+  </a>
+  <div class="caption">
+    Packed with Power
+    UDI R/C Boats Bring High-Performance to the Water
+  </div>
+</div>
